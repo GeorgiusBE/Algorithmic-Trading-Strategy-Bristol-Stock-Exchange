@@ -1,4 +1,7 @@
 ## 1	Trading Strategy: MMM01
+The MMM01 agent is designed to act on short-term price dips by leveraging a simple moving average. To avoid acting on erratic early market activity, it waits for the market to remain open for 5 minutes before placing any orders. This initial delay allows prices to stabilize.
+
+MMM01 uses a single moving average (window size of 5) based on historical transaction prices to guide its entry points. A buy signal is generated when the best ask price drops below the moving average, specifically when the ratio of the best ask price to the moving average falls below 0.9999. Upon triggering this signal, MMM01 submits a spread-crossing bid to immediately lift the best ask price and enter a long position. Once MMM01 owns one unit of the security, it monitors the market for an opportunity to sell at a profit. It only exits the position when the best bid price exceeds the original purchase price by at least a predefined profit margin of 5. When this condition is met, MMM01 submits a spread-crossing ask order to lift the best bid, thus realizing the gain.
 
 ## 2	Trading Strategy: MMM02
 MMM02 utilizes 2 moving averages (short-term MA and long-term MA), where the MA is based on past transaction prices. For context, I have explored and tested var-ious trading signals that can be generated using 2 moving averages, most notably the MA crossover strategy, where it performed very poorly due to its restrictive buying rule, which generates few signals and limits its effectiveness.
