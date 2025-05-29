@@ -35,7 +35,11 @@ In this section, no market shocks are applied throughout the simulation. However
 
 #### (a) IBM
 
-  
+<p>
+  <img src="Charts/No-Shock-IBM-MMM01.png" alt="MMM01 No Shock IBM" width="400" style="display: inline-block; margin-right: 10px;"/>
+  <img src="Charts/No-Shock-IBM-MMM02.png" alt="MMM02 No Shock IBM" width="400" style="display: inline-block;"/>
+</p>
+
 Fig. 1. The cumulative profit for trader MMM01 and MMM02 from a sample simulation with IBM offset values and no market shock.
 
 As shown in Fig. 1., when offset values derived from IBM price is used, MMM01 far outperforms MMM02. In the specific sample run depicted, MMM01 accumulated over $10,396 in total profit, compared to approximately $2,839 for MMM02. Moreover, notice that MMM01 only has profitable trades due to MMM01’s selling rule. In contrast, MMM02’s cumulative profit sporadically moves up-and-down. This volatility arises from the nature of the BSE market, where a trader is randomly selected at each time step to place a quote, if any. Consequently, after MMM02’s bid quote is executed, it is unlikely to immediately place an ask quote in the next time-step. During this delay, the LOB may move unfavorably relative to MMM02’s long position, introducing inventory risk and forcing MMM02 to place ask quotes at a price below the previously executed bid quote.
@@ -55,7 +59,12 @@ Given the data’s normality, homogeneity of variances, and independence of sam-
 The p-value obtained from the t-test is approximately zero. This means that at α = 0.05, the null hypothesis is rejected. In other words, the average profit of MMM01 is significantly higher than that of MMM02.
 
 #### (b) Nasdaq
-  
+
+<p>
+  <img src="Charts/No-Shock-NASDAQ-MMM01.png" alt="MMM01 No Shock NASDAQ" width="400" style="display: inline-block; margin-right: 10px;"/>
+  <img src="Charts/No-Shock-NASDAQ-MMM02.png" alt="MMM02 No Shock NASDAQ" width="400" style="display: inline-block;"/>
+</p>
+
 Fig. 2. The cumulative profit for trader MMM01 and MMM02 from a sample simulation with Nasdaq offset values and no market shock.
 
 Comparing Fig. 2. and Fig. 1., a similar behavior is observed when offset values derived from Nasdaq price data are used. Following the same workflow as before, the average total profit was calculated. MMM01 once again demonstrated superior performance, achieving an average total profit of $11,319 compared to MMM02’s $2,501.
@@ -72,12 +81,15 @@ From running the simulations, a similar outcome is obtained as when there is no 
 Just like before, the Shapiro-Wilk test was performed, which showed that both groups’ total profits are normally distributed, with p-values of 0.73 and 0.28 for MMM01 and MMM02, respectively; and the F-test concludes that there is a statisti-cally significant difference in the variances between the two groups (with f-statistic = 40.12, lower critical value = 0.10, and upper critical value = 9.6). Therefore, the Welch’s t-test was deployed, using the same hypotheses as in section 3.1(a). The test concluded that MMM01’s average total profit was significantly greater than MMM02’s; with p-value (0.01) < α (0.05).
 
 ### 4.3	Negative Market Shock
+
+<p>
+  <img src="Charts/Neg-Shock-IBM-MMM01.png" alt="MMM01 Negative Shock IBM" width="400" style="display: inline-block; margin-right: 10px;"/>
+  <img src="Charts/Neg-Shock-IBM-MMM02.png" alt="MMM02 Negative Shock IBM" width="400" style="display: inline-block;"/>
+</p>
+
 Similar to the positive market shock experiment, only IBM offset values will be used. However, in this experiment, the demand and supply curves are shifted downwards mid-way through the simulation (at time = 13500 seconds), causing the supply and demand curve ranges to drop to 10-50 and 100-150, respectively.
 
 The plot for MMM01 in Fig. 3. reveals a distinct characteristic not observed in any of the previous plots, while the MMM02 plot exhibits similar patterns to earlier experiments. Notably, MMM01’s total profit dropped significantly to $3471. This is caused by MMM01’s selling strategy that never allows it to make a losing trade and the maximum inventory it stores is one. Consequently, if MMM01 purchased a security before the negative market shock and did not sell it in time, it would be unable to exit the losing position after the market shock has happened. This explains the inactivity of MMM01 post the market shock (as represented by the horizontal lines). In contrast, MMM02 was less impacted by the negative market shock due to its selling strategy, which ensures it continues quoting at the best ask price, even if it means realizing a substantial loss. By doing so, MMM02 quickly clears its inventory, enabling it to recover losses through future profitable trades.
- 
-  
-Fig. 3. The cumulative profit for trader MMM01 and MMM02 from a sample simulation with IBM offset values and negative market shock.
 
 Despite the challenges posed by the negative market shock, the results from multiple simulations indicate that MMM01’s average profit ($4,296) remains higher than MMM02’s ($2,863). To verify whether this performance difference is statistically significant, Shapiro-Wilk test is performed first, which showed that the total profit data for MMM01 (p-value = 0.31) and MMM02 (p-value = 0.50) are normally dis-tributed; and the F-test returned an f-statistic value of 8.56, lower critical value of 0.10, and upper critical value of 9.60, which demonstrates that there is no signifi-cant difference between the variances. Given these results, the Student’s t test is used with the same hypotheses as in section 3.1(a). The test returned p-value (0.039) < α (0.05) which means that MMM01’s average total profit is significantly greater than MMM02.
 
